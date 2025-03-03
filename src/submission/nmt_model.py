@@ -306,7 +306,8 @@ class NMT(nn.Module):
         ### START CODE HERE (~3 Lines)
         dec_state = self.decoder(Ybar_t, dec_state)
         dec_hidden, dec_cell = dec_state
-        e_t = torch.squeeze(torch.bmm(enc_hiddens_proj, torch.unsqueeze(dec_hidden, 2)))
+        e_t = torch.squeeze(torch.bmm(enc_hiddens_proj, torch.unsqueeze(dec_hidden, 2)), 2)
+        print("aaaa", torch.bmm(enc_hiddens_proj, torch.unsqueeze(dec_hidden, 2)).shape)
         ### END CODE HERE
 
         # Set e_t to -inf where enc_masks has 1
